@@ -6,9 +6,9 @@
 // PHP statements end with a ;
 
 //In PHP, keywords are not case-sensitive but all variable names are case-sensitive!
-//A PHP script starts with <?php and ends with ?>:
+//A PHP script starts with <?php and ends with ?>
 
-<!-- could be inside the html -->
+<!-- could be after, before or inside the html -->
 <!DOCTYPE html>
 <html>
 <body>
