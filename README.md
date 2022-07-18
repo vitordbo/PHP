@@ -21,4 +21,6 @@ PHP files can contain text, HTML, CSS, JavaScript, and PHP code and have extensi
 
 PHP can do a lot of things :)
 
+documentation:
+https://www.w3schools.com/php/default.asp
 
