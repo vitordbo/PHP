@@ -53,7 +53,7 @@ input {
     border-radius: 5px;
 }
 
-input.invalido {
+input.invalid {
     border: 1px solid red;
 }
 
@@ -71,10 +71,10 @@ button {
 }
 
 button:hover {
-    background: #16ff35;
+    background: #36b647;
 }
 
-.error {
+.erro {
     display: block;
     margin-top: 15px;
     color: red;
