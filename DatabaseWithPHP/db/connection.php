@@ -16,4 +16,12 @@
     echo "Connection failed: " . $e->getMessage();
   }
 
+  // function to prevent wrong data
+  function cleanPost($data){
+    $data = trim($data);
+    $data = stripslashes($data);
+    $data = htmlspecialchars($data);
+    return $data;
+  }
+
 ?>
