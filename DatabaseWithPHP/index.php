@@ -11,6 +11,17 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <title>inserting data</title>
         <meta name="viewport" content="width=device-width, initial-scale=1">
+        <style>
+            table{
+                border-collapse: collapse;
+                width: 100%;
+            }
+            th,td{
+                padding: 10px;
+                text-align:center;
+                border: 1px solid #ccc;
+            }
+        </style>
     </head>
     <body>
         <h1>Inserting data using php</h1>
@@ -20,7 +31,7 @@
             <button type="submit" name="save">Save</button>
         </form> 
 
-        <?php 
+        <?php  // INSERT DATA
         /*
         // insert data => SQL injection => not the best way => there is one way more secure 
         $sql = $pdo->prepare("INSERT INTO clients VALUES (null, 'Vitor', 'vitor@email.com', '11-08-2022')");
@@ -73,6 +84,50 @@
             echo "<b style='color:green'>OK!</b>";
         }
         ?>
+
+        <?php 
+            // SELECT DATA FROM TABLE => can add a filter WHERE email ? 
+            $sql = $pdo->prepare("SELECT * FROM clients");
+            $sql->execute();
+            $dataSelect = $sql->fetchAll();
+
+            /*
+            // SELECT DATA FROM TABLE => can add a filter WHERE email ? 
+            $sql = $pdo->prepare("SELECT * FROM clients WHERE email = ?");
+            $email = "vitor@email.com";
+            $sql->execute(array($email));
+            $dataSelect = $sql->fetchAll();
+            
+            echo "<pre>";
+            print_r($data);
+            echo "</pre>";
+            */
+        ?>
+
+        <?php 
+            if(count($dataSelect) > 0){
+                echo "<br><table>
+                <tr>
+                    <th>ID</th>
+                    <th>Name</th>
+                    <th>Email</th>
+                </tr>";
+
+                foreach($dataSelect as $key => $value){
+                    echo "<tr>
+                                <th>".$value['id']."</th>
+                                <th>".$value['name']."</th>
+                                <th>".$value['email']."</th>
+                            </tr>";
+                }
+
+                echo "</table>";
+            } else {
+                echo "<p>nothing to show</p>";
+            }
+
+        ?>
+
         <br>
     </body>
 </html>
