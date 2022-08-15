@@ -42,6 +42,16 @@
             <button type="button" id="cancel" name="cancel">cancel</button>
         </form> 
 
+        <form class="hide" id="delete-form" method="post">
+            <input type="hidden" id="delete_id" name="delete_id" placeholder="Update your id" required>
+            <input type="hidden" id="delete_name" name="delete_name" placeholder="Update your name" required>
+            <input type="hidden" id="delete_email" name="delete_email" placeholder="Update your email" required>
+            <b>Are you sure about delete <span id=client></span>?</b>
+            <button type="submit" name="delete">Delete</button>
+            <button type="button" id="cancel_delete" name="cancel_delete">cancel</button>
+        </form> 
+
+
         <?php  // INSERT DATA
         /*
         // insert data => SQL injection => not the best way => there is one way more secure 
@@ -106,7 +116,7 @@
         
             
              // check if is a empty name 
-             if ($nameUpdate == "" || $nameUpdate == null){
+            if ($nameUpdate == "" || $nameUpdate == null){
                 echo "Name can't be empty";
                 exit();
             }
@@ -135,6 +145,28 @@
             echo "Update ".$sql->rowCount()." line";
             
         }         
+        ?>
+
+        <?php
+            /*
+            // DELETE USING ID
+            $sql = $pdo->prepare("DELETE FROM clients WHERE id=?");
+            $sql->execute(array(3));
+            */
+
+            if(isset($_POST['delete']) && isset($_POST['delete_id']) && isset($_POST['delete_name']) && isset($_POST['delete_email'])){
+
+                $id = cleanPost($_POST['delete_id']);
+                $nameDelete = cleanPost($_POST['delete_name']);
+                $emailDelete = cleanPost($_POST['delete_email']);
+
+                $sql = $pdo->prepare("DELETE FROM clients WHERE id=? AND name=? AND email=?");
+                $sql->execute(array($id, $nameDelete, $emailDelete));
+
+                echo "Delete successfully";
+            }
+
+
         ?>
 
         <?php 
@@ -171,7 +203,9 @@
                                 <th>".$value['id']."</th>
                                 <th>".$value['name']."</th>
                                 <th>".$value['email']."</th>
-                                <th><a href='#' class='btn-update' data-id='".$value['id']."' data-name='".$value['name']."' data-email='".$value['email']."'>Update</a></th> 
+                                <th><a href='#' class='btn-update' data-id='".$value['id']."' data-name='".$value['name']."' data-email='".$value['email']."'>Update</a> | 
+                                <a href='#' class='btn-delete' data-id='".$value['id']."' data-name='".$value['name']."' data-email='".$value['email']."'>Delete</a></th> 
+
                             </tr>";
                 }
 
@@ -192,6 +226,7 @@
                 var email = $(this).attr('data-email');
 
                 $('#save-form').addClass('hide');
+                $('#delete-form').addClass('hide');
                 $('#update-form').removeClass('hide');
 
                 $("#update_id").val(id);
@@ -199,10 +234,40 @@
                 $("#update_email").val(email);  
             });
 
+            // to delete 
+            $(".btn-delete").click(function(){
+                var id = $(this).attr('data-id');
+                var name = $(this).attr('data-name');
+                var email = $(this).attr('data-email');
+
+                $("#delete_id").val(id);
+                $("#delete_name").val(name);
+                $("#delete_email").val(email);  
+                $("#client").html(name);
+
+                $('#save-form').addClass('hide');
+                $('#update-form').addClass('hide');
+                $('#delete-form').removeClass('hide');
+
+            });
+
+            // cancel update
             $('#cancel').click(function(){
+                // show or not show the form
                 $('#save-form').removeClass('hide');
                 $('#update-form').addClass('hide');
+                $('#delete-form').addClass('hide');
             });
+
+            // cancel delete
+            $('#cancel_delete').click(function(){
+                // show or not show the form
+                $('#save-form').removeClass('hide');
+                $('#update-form').addClass('hide');
+                $('#delete-form').addClass('hide');
+            });
+
+
         </script>
     </body>
 </html>
