@@ -171,7 +171,7 @@
 
         <?php 
             // SELECT DATA FROM TABLE => can add a filter WHERE email ? 
-            $sql = $pdo->prepare("SELECT * FROM clients");
+            $sql = $pdo->prepare("SELECT * FROM clients ORDER BY id LIMIT 3");
             $sql->execute();
             $dataSelect = $sql->fetchAll();
 
