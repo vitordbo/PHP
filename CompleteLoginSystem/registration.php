@@ -45,7 +45,7 @@
         </div>
     
         <button class="btn-blue" type="submit">Register</button>
-        <a href="index.html">Alredy have an account</a>
+        <a href="index.php">Alredy have an account</a>
     </form>
 
 </body>

@@ -22,7 +22,7 @@
         </div>
     
         <button class="btn-blue" type="submit">Login</button>
-        <a href="registration.html">Register</a>
+        <a href="registration.php">Register</a>
 
     </form>
 </body>
