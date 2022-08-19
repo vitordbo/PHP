@@ -131,3 +131,16 @@ label{
     font-weight: bold;
     font-size: 14px;
 }
+
+.success{
+    background: #2ac874;
+    color: white;
+    font-weight: bold;
+    padding: 20px;
+    border-radius: 5px;
+    margin-bottom: 15px;
+}
+
+.hide{
+    display: none;
+}
