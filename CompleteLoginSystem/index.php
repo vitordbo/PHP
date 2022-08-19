@@ -1,3 +1,8 @@
+<?php
+    require('db/connection.php');
+?>
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -10,6 +15,14 @@
 <body>
     <form>
         <h1>Login</h1>
+
+        <?php if(isset($_GET['result'])){ ?>
+
+        <?php }?>
+
+        <div class="success">
+        user registered successfully
+        </div>
 
         <div class="input-group">
             <img class="input-icon" src="img/mail.png">
