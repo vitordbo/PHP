@@ -44,7 +44,7 @@
 
             // do this if everything is ok => if there is not a error
             if(!isset($generalError) && !isset($nameErr) && !isset($emailErr) && !isset($passwErr) && !isset($repeatpasswErr) && !isset($checkErr)){
-                // chek if this user is alredy in the system (email is alredy in the system)
+                // chek if this user is already in the system (email is already in the system)
                 $sql = $pdo->prepare("SELECT * FROM users WHERE email=? LIMIT 1");
                 $sql->execute(array($email));
                 $user = $sql->fetch(); // to see if cath a user
@@ -61,8 +61,8 @@
                         header('location: index.php?result=ok');
                     }
                 }else{
-                    // if the user is alrey in the system => show error message
-                    $generalError = "User alredy in the system";
+                    // if the user is already in the system => show error message
+                    $generalError = "User already in the system";
                 }
             }
 
@@ -130,7 +130,7 @@
         </div>
     
         <button class="btn-blue" type="submit">Register</button>
-        <a href="index.php">Alredy have an account</a>
+        <a href="index.php">already have an account</a>
     </form>
 
 </body>

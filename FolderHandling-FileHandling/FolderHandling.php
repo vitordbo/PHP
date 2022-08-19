@@ -5,7 +5,7 @@
     // 2 folders => $folders = "folder/new-folder/";
 
     // creating 
-    if(!is_dir($folder)){  // tests if alredy exists 
+    if(!is_dir($folder)){  // tests if already exists 
         mkdir($folder, 0755);  
         // https://www.php.net/manual/en/function.chmod.php => 0755 is a security question
     } else {
