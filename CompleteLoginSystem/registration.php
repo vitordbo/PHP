@@ -93,7 +93,7 @@
         
 
         <div class="input-group">
-            <img class="input-icon" src="img/name.png">
+            <img class="input-icon" src="img/user.png">
             <input <?php if(isset($generalError) or isset($nameErr)) {echo 'class="error-input"';} ?> name="full_name" type="text" placeholder="Type your full name" <?php if(isset($_POST['full_name'])){ echo "value='".$_POST['full_name']."'";} ?> required>
             <?php if(isset($nameErr)){ ?>
             <div class="error"><?php echo $nameErr; ?> </div> 
@@ -101,7 +101,7 @@
         </div>
 
         <div class="input-group">
-            <img class="input-icon" src="img/mail.png">
+            <img class="input-icon" src="img/email.png">
             <input <?php if(isset($generalError) or isset($emailErr)) {echo 'class="error-input"';} ?> type="email" name="email" placeholder="Type your email" <?php if(isset($_POST['email'])){ echo "value='".$_POST['email']."'";} ?> required>
             <?php if(isset($emailErr)){ ?>
             <div class="error"><?php echo $emailErr; ?> </div> 
@@ -109,7 +109,7 @@
         </div>
 
         <div class="input-group">
-            <img class="input-icon" src="img/password.png">
+            <img class="input-icon" src="img/padlock.png">
             <input  <?php if(isset($generalError) or isset($passwErr)) {echo 'class="error-input"';} ?> type="password" name="password" placeholder="Type your password" <?php if(isset($_POST['password'])){ echo "value='".$_POST['password']."'";} ?> required>
             <?php if(isset($passwErr)){ ?>
             <div class="error"><?php echo $passwErr; ?> </div> 
@@ -117,7 +117,7 @@
         </div>
     
         <div class="input-group">
-            <img class="input-icon" src="img/openLock.png">
+            <img class="input-icon" src="img/unlock.png">
             <input <?php if(isset($generalError) or isset($repeatpasswErr)) {echo 'class="error-input"';} ?> type="password" name="repeat_password" placeholder="Type again your password" <?php if(isset($_POST['repeat_password'])){ echo "value='".$_POST['repeat_password']."'";} ?> required>
             <?php if(isset($repeatpasswErr)){ ?>
             <div class="error"><?php echo $repeatpasswErr; ?> </div> 

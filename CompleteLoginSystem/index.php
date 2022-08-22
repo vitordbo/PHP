@@ -25,12 +25,12 @@
 
 
         <div class="input-group">
-            <img class="input-icon" src="img/mail.png">
+            <img class="input-icon" src="img/email.png">
             <input type="email" placeholder="Type your email">
         </div>
 
         <div class="input-group">
-            <img class="input-icon" src="img/password.png">
+            <img class="input-icon" src="img/padlock.png">
             <input type="password" placeholder="Type your password">
         </div>
     
