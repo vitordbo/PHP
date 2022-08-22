@@ -1,5 +1,5 @@
 <?php
-
+    session_start();
     /*
         could be local (localhost) or a real system (to really work )
         two modes
@@ -40,6 +40,22 @@
         $data = stripslashes($data);
         $data = htmlspecialchars($data);
         return $data;
+    }
+
+    function auth($tokenSession){
+        global $pdo;
+        // verfify if has authorization
+        $sql = $pdo->prepare("SELECT * FROM users WHERE token=? LIMIT 1");
+        $sql->execute(array($tokenSession)); // token that is save on the session
+        $user = $sql->fetch(PDO::FETCH_ASSOC);
+
+        // if not find the user
+        if(!$user){
+            return false;
+        }else{
+            // if finds the user
+            return $user;
+        }
     }
 
 ?>

@@ -58,7 +58,13 @@
                     $sql = $pdo->prepare("INSERT INTO users VALUES (null,?,?,?,?,?,?,?)");
                     
                     if($sql->execute(array($name,$email,$encrypt_password,$recovery_password,$token,$status,$registration_date))){
-                        header('location: index.php?result=ok');
+                        if($mode == 'local'){
+                            header('location: index.php?result=ok');
+                        }
+                        
+                        if($mode == 'real'){
+                           // send email
+                        }
                     }
                 }else{
                     // if the user is already in the system => show error message
