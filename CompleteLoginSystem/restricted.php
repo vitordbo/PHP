@@ -5,8 +5,11 @@
     $user = auth($_SESSION['TOKEN']);
     if ($user){
         //authorized
-        echo "<h1>Welcome <b style='color:red'>".$user['name']."</b></h1>";
-        echo "<br><br><a style='background:green; text-decoration: none; color:white; padding:20px; border-radius: 5px;' href='logout.php'>Logout</a>";
+        echo "<div>
+        <h1 style='text-align: center;'>Welcome <b style='color:red'>".$user['name']."</b><br><br>
+        <a style='background:green; text-decoration: none; color:white; padding:20px; border-radius: 5px;' href='logout.php'>Logout</a></h1><br><br>
+        </div>";
+     
     }else{
         // back to login => not authorized
         header('location: index.php');

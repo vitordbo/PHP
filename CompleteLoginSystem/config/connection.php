@@ -5,14 +5,6 @@
         two modes
     */
 
-    // To use PHPMailer
-    use PHPMailer\PHPMailer\PHPMailer;
-    use PHPMailer\PHPMailer\Exception;
-
-    require 'PHPMailer/src/Exception.php';
-    require 'PHPMailer/src/PHPMailer.php';
-    require 'PHPMailer/src/SMTP.php';
-
     $mode = 'local';
 
     if ($mode == 'local'){
@@ -25,10 +17,10 @@
 
     if ($mode == 'real'){
         // general configurations
-        $servername = "";
-        $username = "";
+        $servername = "localhost";
+        $username = "root";
         $password = "";
-        $dbName = "";
+        $dbName = "login_system";
     }
 
     // try to connect => showing error mesage 

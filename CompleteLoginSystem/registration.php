@@ -1,6 +1,14 @@
 <?php 
     require('config/connection.php');
 
+     // To use PHPMailer
+     use PHPMailer\PHPMailer\PHPMailer;
+     use PHPMailer\PHPMailer\Exception;
+ 
+     require 'config/PHPMailer/src/Exception.php';
+     require 'config/PHPMailer/src/PHPMailer.php';
+     require 'config/PHPMailer/src/SMTP.php';
+ 
     // checkbox is just empty or not empty 
     // check if exists a post
     if(isset($_POST['full_name']) && isset($_POST['email']) && isset($_POST['password']) && isset($_POST['repeat_password'])) {
@@ -53,11 +61,17 @@
                 if(!$user){
                     $recovery_password="";
                     $token="";
-                    $status = "new"; // first time in the database => change to ok later
-                    $registration_date = date('d/m/Y');
-                    $sql = $pdo->prepare("INSERT INTO users VALUES (null,?,?,?,?,?,?,?)");
+                    $confirmation_code = uniqid();
+                    $status = "confirmed"; // first time in the database => change to ok later
                     
-                    if($sql->execute(array($name,$email,$encrypt_password,$recovery_password,$token,$status,$registration_date))){
+                    /* to work with email validation
+                    //$status = "new"; // ideal => but email validation needs a server 
+                    */
+
+                    $registration_date = date('d/m/Y');
+                    $sql = $pdo->prepare("INSERT INTO users VALUES (null,?,?,?,?,?,?,?,?)");
+                    
+                    if($sql->execute(array($name,$email,$encrypt_password,$recovery_password,$token,$confirmation_code,$status,$registration_date))){
                         if($mode == 'local'){
                             header('location: index.php?result=ok');
                         }
@@ -66,6 +80,22 @@
                            // send email to user
                            $mail = new PHPMailer(true);
 
+                           try {
+                            //Recipients
+                            $mail->setFrom('system@email.com', 'Login System');  // who is sending => my system
+                            $mail->addAddress($email, $name);   //Add a recipient
+    
+                            //Content
+                            $mail->isHTML(true);     //Set email format to HTML
+                            $mail->Subject = 'Complete your registration';
+                            $mail->Body    = '<h1>Please confirm your email:</h1><br><br><a style="background:green; text-decoration: none; color:white; padding:20px; border-radius: 5px;" href="http://localhost/PHP/CompleteLoginSystem/confirmation.php?cod_confirm='.$confirmation_code.'">Confirm E-mail</a>';
+                            
+                            $mail->send();
+                            header('location: thanks.php');
+
+                           }catch (Exception $e) {
+                                echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
+                            }
                         }
                     }
                 }else{

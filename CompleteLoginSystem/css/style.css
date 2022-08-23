@@ -144,3 +144,24 @@ label{
 .hide{
     display: none;
 }
+
+.text-center{
+    justify-content: center;
+    text-align: center;
+    align-items: center;
+    justify-items: center
+}
+
+.gmail{
+    background: red;
+    color: white;
+    padding: 20px;
+    border-radius: 5px;
+}
+
+.outlook{
+    background: blue;
+    color: white;
+    padding: 20px;
+    border-radius: 5px;
+}
