@@ -1,5 +1,5 @@
 <?php 
-    require('db/connection.php');
+    require('config/connection.php');
 
     // checkbox is just empty or not empty 
     // check if exists a post
@@ -63,7 +63,9 @@
                         }
                         
                         if($mode == 'real'){
-                           // send email
+                           // send email to user
+                           $mail = new PHPMailer(true);
+
                         }
                     }
                 }else{

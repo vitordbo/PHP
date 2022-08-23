@@ -1,5 +1,5 @@
 <?php
-    require('db/connection.php');
+    require('config/connection.php');
 
     // verfify if has authorization
     $user = auth($_SESSION['TOKEN']);

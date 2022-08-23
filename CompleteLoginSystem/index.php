@@ -1,5 +1,5 @@
 <?php
-    require('db/connection.php');
+    require('config/connection.php');
 
     if(isset($_POST['email']) && isset($_POST['password']) && !empty($_POST['email']) && !empty($_POST['password'])){
         // recive data and clean
