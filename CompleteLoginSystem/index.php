@@ -73,10 +73,11 @@
             <img class="input-icon" src="img/padlock.png">
             <input type="password" name="password" placeholder="Type your password" required>
         </div>
+
+        <a href="recovery.php">Forgot your password?</a>
     
         <button class="btn-blue" type="submit">Login</button>
         <a href="registration.php">Register</a>
-
     </form>
 </body>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
