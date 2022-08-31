@@ -1,3 +1,11 @@
+<?php
+    require_once('class/config.php');
+    require_once('autoload.php');
+    
+
+
+?>
+
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
@@ -12,7 +20,7 @@
     <title>Cadastrar</title>
 </head>
 <body>
-    <form>
+    <form method="POST">
         <h1>Cadastrar</h1>
          
         <div class="erro-geral animate__animated animate__rubberBand">
@@ -21,27 +29,27 @@
 
         <div class="input-group">
             <img class="input-icon" src="img/card.png">
-            <input class="erro-input" type="text" placeholder="Nome Completo">
+            <input class="erro-input" name="name" type="text" placeholder="Nome Completo" required>
             <div class="erro">Por favor informe um nome válido!</div>
         </div>
 
         <div class="input-group">
             <img class="input-icon" src="img/user.png">
-            <input type="email" placeholder="Seu melhor email">
+            <input type="email" name="email" placeholder="Seu melhor email" required>
         </div>
 
         <div class="input-group">
             <img class="input-icon" src="img/lock.png">
-            <input type="password" placeholder="Senha mínimo 6 Dígitos">
+            <input type="password" name="password" placeholder="Senha mínimo 6 Dígitos" required>
         </div>
 
         <div class="input-group">
             <img class="input-icon" src="img/lock-open.png">
-            <input type="password" placeholder="Repita a senha criada">
+            <input type="password" name="repeat_password" placeholder="Repita a senha criada" required>
         </div>   
         
         <div class="input-group">
-            <input type="checkbox" id="termos" name="termos" value="ok">
+            <input type="checkbox" id="termos" name="termos" value="ok" required>
             <label for="termos">Ao se cadastrar você concorda com a nossa <a class="link" href="#">Política de Privacidade</a> e os <a class="link" href="#">Termos de uso</a></label>
         </div>  
        
