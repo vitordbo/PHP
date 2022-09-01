@@ -1,10 +1,45 @@
 <?php
     require_once('class/config.php');
     require_once('autoload.php');
-    
 
+    //VERIFICAR SE EXISTE O POST COM TODOS OS DADOS
+    if (isset($_POST['nome']) && isset($_POST['email']) && isset($_POST['senha']) && isset($_POST['repete_senha'])){
+        //RECEBER VALORES VINDOS DO POST E LIMPAR
+        $nome = limpaPost($_POST['nome']);
+        $email = limpaPost($_POST['email']);
+        $senha = limpaPost($_POST['senha']);
+        $repete_senha = limpaPost($_POST['repete_senha']);
+
+        //VERIFICAR SE VALORES VINDOS DO POST NÃO ESTÃO VAZIOS
+        if(empty($nome) or empty($email) or empty($senha) or empty($repete_senha) or empty($_POST['termos'])){
+            $erro_geral = "Todos os campos são obrigatórios!";
+        }else{
+            //INSTANCIAR A CLASSE USUARIO
+            $usuario = new Usuario($nome,$email,$senha);
+
+            //SETAR A REPETICAO DE SENHA
+            $usuario->set_repeticao($repete_senha);
+
+            //VALIDAR O CADASTRO
+            $usuario->validar_cadastro();
+
+            //SE NÃO TIVER NENHUM ERRO - ESTÁ VAZIO ERROS
+            if(empty($usuario->erro)){
+                //INSERIR
+                if($usuario->insert()){
+                    header('location: index.php');
+                }else{
+                    //DEU ERRADO - ERRO GERAL
+                    $erro_geral = $usuario->erro["erro_geral"];
+                }
+            }
+
+        }
+
+    }
 
 ?>
+
 
 <!DOCTYPE html>
 <html lang="pt-br">
@@ -26,6 +61,12 @@
         <div class="erro-geral animate__animated animate__rubberBand">
             Aqui vai o erro para o usuário
         </div>
+
+        <?php if(isset($erro_geral)){?>
+        <div class="erro-geral animate__animated animate__rubberBand">
+            <?php echo $erro_geral; ?>
+        </div>
+        <?php } ?>
 
         <div class="input-group">
             <img class="input-icon" src="img/card.png">
