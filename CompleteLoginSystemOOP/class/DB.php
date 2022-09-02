@@ -1,23 +1,25 @@
 <?php
-require_once('config.php');
+    require_once('config.php');
 
-class DB{
-    private static $pdo;
-    public static function instantiate(){
-        if(!isset(self::$pdo)){
-            try{
-              self::$pdo = new PDO('mysql:host='.SERVER.';dbname='.DATABASE,USER,PASSWORD);
-              self::$pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);  
-              self::$pdo->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_OBJ);
-            }catch(PDOException $erro){
-                echo "Connection failed: ".$erro->getMessage();
+    class DB{
+        private static $pdo;
+        
+        public static function instantiate(){
+            if(!isset(self::$pdo)){
+                try{
+                    self::$pdo = new PDO('mysql:host='.SERVER.';dbname='.DATABASE,USER,PASSWORD);
+                    self::$pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);  
+                    self::$pdo->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_OBJ);
+                }catch(PDOException $erro){
+                    echo "Connection failed: ".$erro->getMessage();
+                }
             }
+            return self::$pdo;
         }
 
-        return self::$pdo;
+        public static function prepare($sql){       
+            return self::instantiate()->prepare($sql);
+        }
     }
 
-    public static function prepare($sql){       
-        return self::instantiate()->prepare($sql);
-    }
-}
+?>
