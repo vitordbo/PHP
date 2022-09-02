@@ -3,12 +3,12 @@
     require_once('autoload.php');
 
     //VERIFICAR SE EXISTE O POST COM TODOS OS DADOS
-    if (isset($_POST['nome']) && isset($_POST['email']) && isset($_POST['senha']) && isset($_POST['repete_senha'])){
+    if (isset($_POST['name']) && isset($_POST['email']) && isset($_POST['password']) && isset($_POST['repeat_password'])){
         //RECEBER VALORES VINDOS DO POST E LIMPAR
-        $nome = limpaPost($_POST['nome']);
+        $nome = limpaPost($_POST['name']);
         $email = limpaPost($_POST['email']);
-        $senha = limpaPost($_POST['senha']);
-        $repete_senha = limpaPost($_POST['repete_senha']);
+        $senha = limpaPost($_POST['password']);
+        $repete_senha = limpaPost($_POST['repeat_password']);
 
         //VERIFICAR SE VALORES VINDOS DO POST NÃO ESTÃO VAZIOS
         if(empty($nome) or empty($email) or empty($senha) or empty($repete_senha) or empty($_POST['termos'])){
@@ -57,10 +57,6 @@
 <body>
     <form method="POST">
         <h1>Cadastrar</h1>
-         
-        <div class="erro-geral animate__animated animate__rubberBand">
-            Aqui vai o erro para o usuário
-        </div>
 
         <?php if(isset($erro_geral)){?>
         <div class="erro-geral animate__animated animate__rubberBand">
@@ -70,26 +66,30 @@
 
         <div class="input-group">
             <img class="input-icon" src="img/card.png">
-            <input class="erro-input" name="name" type="text" placeholder="Nome Completo" required>
-            <div class="erro">Por favor informe um nome válido!</div>
+            <input <?php if (isset ($usuario->erro["erro_nome"]) or isset($erro_geral)){ echo 'class="erro-input"'; }?> name="name" type="text" <?php if(isset($_POST['name'])){echo 'value="'.$_POST['name'].'"';}?> placeholder="Nome Completo" required>
+            <div class="erro"><?php if(isset($usuario->erro["erro_nome"])){echo $usuario->erro["erro_nome"];}?></div>
         </div>
+
 
         <div class="input-group">
             <img class="input-icon" src="img/user.png">
-            <input type="email" name="email" placeholder="Seu melhor email" required>
+            <input <?php if(isset($usuario->erro["erro_email"]) or isset($erro_geral)){ echo 'class="erro-input"'; }?> type="email" name="email" <?php if(isset($_POST['email'])){echo 'value="'.$_POST['email'].'"';}?> placeholder="Seu melhor email" required>
+            <div class="erro"> <?php if(isset($usuario->erro["erro_email"])){echo $usuario->erro["erro_email"];}  ?> </div>
         </div>
 
         <div class="input-group">
             <img class="input-icon" src="img/lock.png">
-            <input type="password" name="password" placeholder="Senha mínimo 6 Dígitos" required>
+            <input <?php if(isset($usuario->erro["erro_senha"]) or isset($erro_geral)){ echo 'class="erro-input"'; }?>  type="password" name="password" <?php if(isset($_POST['password'])){echo 'value="'.$_POST['password'].'"';}?> placeholder="Senha mínimo 6 Dígitos" required>
+            <div class="erro"> <?php if(isset($usuario->erro["erro_senha"])){echo $usuario->erro["erro_senha"];}  ?> </div>
         </div>
 
         <div class="input-group">
             <img class="input-icon" src="img/lock-open.png">
-            <input type="password" name="repeat_password" placeholder="Repita a senha criada" required>
+            <input <?php if(isset($usuario->erro["erro_repete"]) or isset($erro_geral)){ echo 'class="erro-input"'; }?>  type="password" name="repeat_password" <?php if(isset($_POST['repeat_password'])){echo 'value="'.$_POST['repeat_password'].'"';}?> placeholder="Repita a senha criada" required>
+            <div class="erro"> <?php if(isset($usuario->erro["erro_repete"])){echo $usuario->erro["erro_repete"];}  ?> </div>
         </div>   
         
-        <div class="input-group">
+        <div <?php if(isset($erro_geral) && $erro_geral=="Todos os campos são obrigatórios!"){echo 'class="input-group erro-input"';}else{ echo 'class="input-group"';}  ?> >
             <input type="checkbox" id="termos" name="termos" value="ok" required>
             <label for="termos">Ao se cadastrar você concorda com a nossa <a class="link" href="#">Política de Privacidade</a> e os <a class="link" href="#">Termos de uso</a></label>
         </div>  
