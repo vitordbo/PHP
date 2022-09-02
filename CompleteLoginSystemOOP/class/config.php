@@ -1,10 +1,10 @@
 <?php
 
 //CONFIGURAÇÕES DO BANCO DE DADOS
-define('SERVIDOR','localhost');
-define('USUARIO','root');
-define('SENHA','');
-define('BANCO','login');
+define('SERVER','localhost');
+define('USER','root');
+define('PASSWORD','');
+define('DATABASE','sistemalogin_oop');
 
 function limpaPost($dados){
     $dados = trim($dados);
