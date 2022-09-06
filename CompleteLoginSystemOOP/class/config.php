@@ -1,6 +1,7 @@
 <?php
+    session_start();
 
-    //CONFIGURAÇÕES DO BANCO DE DADOS
+    // Database configuration
     define('SERVER','localhost');
     define('USER','root');
     define('PASSWORD','');
