@@ -32,7 +32,7 @@
                     // put the token on the session
                     $_SESSION['TOKEN'] = $this->token;
                     // if auth is ok => go to the secret page
-                    header('location: restrita/index.php');
+                    header('location: restrict/index.php');
                 }else{
                     $this->erro["erro_geral"] = "Fail to communicate with the server!"; 
                 }
