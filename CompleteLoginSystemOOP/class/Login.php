@@ -48,7 +48,7 @@
             $user = $sql->fetch(PDO::FETCH_ASSOC);
 
             if($user){
-                $this->name =  $user["name"]; 
+                $this->name =  $user["nome"]; 
                 $this->email =  $user["email"];
             }else{
                 header('location: ../index.php');

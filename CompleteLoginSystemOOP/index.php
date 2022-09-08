@@ -33,16 +33,16 @@ if(isset($_POST['email']) && isset($_POST['password']) && !empty($_POST['email']
 
         <div class="input-group">
             <img class="input-icon" src="img/user.png">
-            <input type="email" placeholder="Digite seu email">
+            <input type="email" name="email" placeholder="Digite seu email">
         </div>
         
         <div class="input-group">
             <img class="input-icon" src="img/lock.png">
-            <input type="password" placeholder="Digite sua senha">
+            <input type="password" name="password" placeholder="Digite sua senha">
         </div>
        
-        <button class="btn-blue" type="submit">Fazer Login</button>
-        <a href="cadastrar.php">Ainda não tenho cadastro</a>
+        <button class="btn-blue" type="submit">Login</button>
+        <a href="cadastrar.php"> Register </a>
     </form>
 </body>
 </html>

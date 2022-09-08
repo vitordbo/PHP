@@ -66,7 +66,7 @@
         public function update($id){
             $sql = "UPDATE $this->table SET token=? WHERE id=?";
             $sql = DB::prepare($sql);
-            return $sql->execute(array($token,$id));
+            return $sql->execute(array($this->token,$id));
         }
 
     }
